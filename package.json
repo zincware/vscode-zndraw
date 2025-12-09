@@ -1,0 +1,134 @@
+{
+  "name": "vscode-zndraw",
+  "displayName": "ZnDraw",
+  "description": "Visualize molecular structures and trajectories with ZnDraw",
+  "version": "0.0.1",
+  "publisher": "zincware",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zincware/vscode-zndraw"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "molecular",
+    "visualization",
+    "xyz",
+    "pdb",
+    "trajectory",
+    "atoms",
+    "chemistry",
+    "ase"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "zndraw.openFile",
+        "title": "Open in ZnDraw",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "zndraw.startServer",
+        "title": "ZnDraw: Start Server",
+        "icon": "$(play)"
+      },
+      {
+        "command": "zndraw.stopServer",
+        "title": "ZnDraw: Stop Server",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "zndraw.openViewer",
+        "title": "ZnDraw: Open Viewer",
+        "icon": "$(browser)"
+      },
+      {
+        "command": "zndraw.toggleServer",
+        "title": "ZnDraw: Toggle Server",
+        "icon": "$(sync)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "zndraw.openFile",
+          "when": "resourceExtname =~ /\\.(xyz|extxyz|pdb|traj|nc|cif|mol|sdf|gro|car|xsf|cube|vasp|poscar|contcar|xdatcar|outcar|xml|pwi|pwo|out|castep|cell|geom|h5|h5md|hdf5|db|aselmdb)$/i",
+          "group": "navigation"
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "zndraw.openFile",
+          "when": "resourceExtname =~ /\\.(xyz|extxyz|pdb|traj|nc|cif|mol|sdf|gro|car|xsf|cube|vasp|poscar|contcar|xdatcar|outcar|xml|pwi|pwo|out|castep|cell|geom|h5|h5md|hdf5|db|aselmdb)$/i",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "zndraw.openFile",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ZnDraw",
+      "properties": {
+        "zndraw.command": {
+          "type": "string",
+          "default": "uvx --prerelease=allow \"zndraw==0.6.0a17\" --file-browser --remove-storage",
+          "description": "Command to run ZnDraw (e.g., 'uvx zndraw', 'uv run zndraw', 'zndraw')"
+        },
+        "zndraw.port": {
+          "type": "number",
+          "default": 5000,
+          "description": "Port for the local ZnDraw server"
+        },
+        "zndraw.serverUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Remote ZnDraw server URL (e.g., 'https://zndraw.icp.uni-stuttgart.de'). Leave empty to use local server."
+        },
+        "zndraw.autoStart": {
+          "type": "boolean",
+          "default": false,
+          "description": "Automatically start ZnDraw server when VS Code opens"
+        },
+        "zndraw.extraArgs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Additional arguments to pass to ZnDraw"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.48.1",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}

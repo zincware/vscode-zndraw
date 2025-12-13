@@ -84,8 +84,8 @@
       "properties": {
         "zndraw.command": {
           "type": "string",
-          "default": "uvx --prerelease=allow \"zndraw==0.6.0a17\" --file-browser --remove-storage",
-          "description": "Command to run ZnDraw (e.g., 'uvx zndraw', 'uv run zndraw', 'zndraw')"
+          "default": "zndraw",
+          "description": "Command to run ZnDraw. By default, uses the Python environment selected in VS Code. Set to 'uvx zndraw' to use uvx instead."
         },
         "zndraw.port": {
           "type": "number",
@@ -118,17 +118,20 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src",
+    "lint": "biome check src",
+    "format": "biome format --write src",
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.85.0",
+    "@biomejs/biome": "^2.3.8",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
-    "typescript-eslint": "^8.48.1",
-    "eslint": "^9.39.1",
-    "typescript": "^5.9.3",
+    "@types/vscode": "^1.85.0",
     "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@vscode/python-extension": "^1.0.6"
   }
 }

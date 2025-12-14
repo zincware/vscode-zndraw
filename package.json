@@ -3,7 +3,7 @@
   "displayName": "ZnDraw",
   "description": "Visualize molecular structures and trajectories with ZnDraw",
   "version": "0.0.1",
-  "publisher": "zincware",
+  "publisher": "PythonFZ",
   "repository": {
     "type": "git",
     "url": "https://github.com/zincware/vscode-zndraw"

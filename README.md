@@ -1,3 +1,5 @@
+[![VS Code Marketplace](https://img.shields.io/badge/VS_Code-ZnDraw-darkcyan)](https://marketplace.visualstudio.com/items?itemName=PythonFZ.vscode-zndraw)
+
 # vscode-zndraw
 Open supported files using ZnDraw and UV directly from VSCode.
 
